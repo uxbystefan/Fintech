@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--bg: #05070A;
+	--surface: #0B0F17;
+	--primary-blue: #2F8BFF;
+	--accent-blue: #59B0FF;
+	--glass: rgba(20, 30, 45, 0.55);
+	--text-primary: #E6EDF3;
+	--text-secondary: #9AA6B2;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background: var(--bg);
+	color: var(--text-primary);
+	font-family: 'Inter', system-ui, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

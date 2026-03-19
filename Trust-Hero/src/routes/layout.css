@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+
+@theme {
+	--font-sans: 'Space Grotesk', system-ui, sans-serif;
+	--color-navy-950: #0b0f1a;
+	--color-navy-900: #121826;
+	--color-navy-800: #1a2238;
+}
+
+/* ── Base ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #0b0f1a;
+	color: #f1f5f9;
+	font-family: 'Space Grotesk', system-ui, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow-x: hidden;
+}
+
+/* ── Keyframes ────────────────────────────────────────── */
+@keyframes float-up {
+	0%,
+	100% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-16px);
+	}
+}
+
+@keyframes float-down {
+	0%,
+	100% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(16px);
+	}
+}
+
+@keyframes float-drift {
+	0%,
+	100% {
+		transform: translateY(0px) translateX(0px);
+	}
+	33% {
+		transform: translateY(-10px) translateX(6px);
+	}
+	66% {
+		transform: translateY(8px) translateX(-5px);
+	}
+}
+
+@keyframes fade-up {
+	from {
+		opacity: 0;
+		transform: translateY(28px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes pulse-glow {
+	0%,
+	100% {
+		box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.3);
+	}
+	50% {
+		box-shadow: 0 0 24px 4px rgba(59, 130, 246, 0.2);
+	}
+}
+
+/* ── Utility: animated gradient text ─────────────────── */
+.gradient-text {
+	background: linear-gradient(90deg, #3b82f6, #22c55e);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+/* ── Utility: glass surface ──────────────────────────── */
+.glass {
+	background: rgba(255, 255, 255, 0.04);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+	border: 1px solid rgba(255, 255, 255, 0.07);
+}
+

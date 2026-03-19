@@ -7,13 +7,13 @@ const stats = [
 { value: '4.9 / 5', label: 'Trust score' }
 ];
 
-const floatingLogos = [
-{ src: '/logos/visa%20logo.svg',        alt: 'Visa',       top: '14%', left: '12%', anim: 'float-up',    delay: '0s',   dur: '6.4s', opacity: 0.18 },
-{ src: '/logos/mastercard%20logo.svg',  alt: 'Mastercard', top: '10%', left: '72%', anim: 'float-down',  delay: '1.2s', dur: '7.2s', opacity: 0.16 },
-{ src: '/logos/stripe-dark%20logo.svg', alt: 'Stripe',     top: '42%', left: '82%', anim: 'float-drift', delay: '0.6s', dur: '8s',   opacity: 0.18 },
-{ src: '/logos/paypal-dark%20logo.svg', alt: 'PayPal',     top: '44%', left: '9%',  anim: 'float-up',    delay: '1.8s', dur: '7s',   opacity: 0.15 },
-{ src: '/logos/Binance%20logo.svg',     alt: 'Binance',    top: '74%', left: '74%', anim: 'float-down',  delay: '0.3s', dur: '7.8s', opacity: 0.16 },
-{ src: '/logos/Revolut%20logo.svg',     alt: 'Revolut',    top: '76%', left: '13%', anim: 'float-drift', delay: '2s',   dur: '9s',   opacity: 0.14 },
+const logos = [
+{ src: '/logos/visa%20logo.svg',        alt: 'Visa' },
+{ src: '/logos/mastercard%20logo.svg',  alt: 'Mastercard' },
+{ src: '/logos/stripe-dark%20logo.svg', alt: 'Stripe' },
+{ src: '/logos/paypal-dark%20logo.svg', alt: 'PayPal' },
+{ src: '/logos/Binance%20logo.svg',     alt: 'Binance' },
+{ src: '/logos/Revolut%20logo.svg',     alt: 'Revolut' },
 ];
 
 let hoveredLogo = $state(-1);
@@ -47,34 +47,10 @@ style="background: radial-gradient(ellipse at center, transparent 35%, rgba(11,1
 aria-hidden="true"
 ></div>
 
-<!-- Floating logos -->
-{#each floatingLogos as logo, i}
-<div
-  class="absolute select-none cursor-default z-20"
-  style="
-    top: {logo.top};
-    left: {logo.left};
-    animation: {logo.anim} {logo.dur} ease-in-out {logo.delay} infinite;
-    will-change: transform;
-  "
->
-  <img
-    src={logo.src}
-    alt={logo.alt}
-    class="h-10 w-auto transition-all duration-500"
-    style="
-      filter: {hoveredLogo === i ? 'none' : 'grayscale(1)'};
-      opacity: {hoveredLogo === i ? 1 : logo.opacity};
-    "
-    onmouseenter={() => (hoveredLogo = i)}
-    onmouseleave={() => (hoveredLogo = -1)}
-  />
-</div>
-{/each}
-
-<!-- Main content (centered) -->
-<div class="relative z-10 flex flex-1 items-center justify-center px-6 pb-20 pt-28">
-<div class="mx-auto flex w-full max-w-170 flex-col items-center text-center">
+<!-- Main content — aligned to Clarity logo via max-w-300 px-6 container -->
+<div class="relative z-10 flex flex-1 items-center pb-20 pt-28">
+<div class="mx-auto w-full max-w-300 px-6">
+<div class="flex max-w-2xl flex-col items-start text-left">
 
 <!-- Badge -->
 <div
@@ -113,7 +89,7 @@ Designing experiences that reduce uncertainty and enable confident decisions.
 
 <!-- CTA Buttons -->
 <div
-class="flex flex-wrap items-center justify-center gap-4"
+class="flex flex-wrap items-center gap-4"
 style="animation: fade-up 0.65s ease 0.28s forwards; opacity: 0;"
 >
 <Button.Root
@@ -121,7 +97,7 @@ class="group inline-flex items-center gap-2.5 rounded-xl px-7 py-3.5 text-sm fon
 style="background: linear-gradient(90deg, #3B82F6, #22C55E); box-shadow: 0 4px 20px rgba(59,130,246,0.3);"
 >
 Explore Interface
-<svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="transition-transform duration-200 group-hover:translate-x-0.5">
+<svg width="24" height="24" viewBox="0 0 16 16" fill="none" class="transition-transform duration-200 group-hover:translate-x-0.5">
 <path d="M3 8h10M9.5 4.5L13 8l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 </svg>
 </Button.Root>
@@ -130,24 +106,50 @@ Explore Interface
 class="inline-flex items-center gap-2.5 rounded-xl border px-7 py-3.5 text-sm font-semibold text-slate-300 transition-all duration-200 hover:scale-[1.02] hover:border-white/25 hover:bg-white/5 hover:text-white active:scale-[0.97]"
 style="border-color: rgba(255,255,255,0.12);"
 >
-<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+<svg width="24" height="24" viewBox="0 0 16 16" fill="none">
 <path d="M8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2zM8 5v4l2.5 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
 </svg>
 View Case Study
 </Button.Root>
 </div>
 
+<!-- Trusted by logos — directly below CTA buttons -->
+<div
+class="mt-10 w-full"
+style="animation: fade-up 0.65s ease 0.38s forwards; opacity: 0;"
+>
+<p class="mb-5 text-xs font-semibold uppercase tracking-widest text-slate-500">Trusted by teams at</p>
+<div class="flex flex-wrap items-center gap-7">
+{#each logos as logo, i}
+<img
+src={logo.src}
+alt={logo.alt}
+class="h-7 w-auto cursor-default select-none transition-all duration-300"
+style="
+  filter: {hoveredLogo === i ? 'none' : 'grayscale(1) brightness(1.6)'};
+  opacity: {hoveredLogo === i ? 1 : 0.38};
+"
+onmouseenter={() => (hoveredLogo = i)}
+onmouseleave={() => (hoveredLogo = -1)}
+/>
+{/each}
+</div>
+</div>
+
 <!-- Stats row -->
 <div
-class="mt-14 flex flex-wrap items-start justify-center gap-8 border-t pt-10 w-full"
-style="border-color: rgba(255,255,255,0.07); animation: fade-up 0.65s ease 0.4s forwards; opacity: 0;"
+class="mt-14 flex flex-wrap items-center justify-between gap-6 border-t pt-10 w-full"
+style="border-color: rgba(255,255,255,0.07); animation: fade-up 0.65s ease 0.5s forwards; opacity: 0;"
 >
+<!-- Stats -->
+<div class="flex flex-wrap items-start gap-8">
 {#each stats as stat}
-<div class="text-center">
+<div class="text-left">
 <div class="text-2xl font-bold tracking-tight text-white">{stat.value}</div>
 <div class="mt-0.5 text-sm text-slate-500">{stat.label}</div>
 </div>
 {/each}
+</div>
 
 <!-- Social proof -->
 <div class="flex items-center gap-3">
@@ -170,6 +172,8 @@ style="z-index: {4 - i};"
 <span class="font-semibold text-white">1,200+</span> designers trust Clarity
 </span>
 </div>
+</div>
+
 </div>
 </div>
 </div>

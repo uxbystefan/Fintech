@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Button } from 'bits-ui';
 
-	let scrolled = $state(false);
 	let mobileOpen = $state(false);
 
 	const navLinks = [
@@ -10,21 +9,11 @@
 		{ label: 'Pricing', href: '#pricing' },
 		{ label: 'Resources', href: '#resources' }
 	];
-
-	$effect(() => {
-		function onScroll() {
-			scrolled = window.scrollY > 24;
-		}
-		window.addEventListener('scroll', onScroll, { passive: true });
-		return () => window.removeEventListener('scroll', onScroll);
-	});
 </script>
 
 <header
-	class="fixed inset-x-0 top-0 z-50 transition-all duration-500"
-	style={scrolled
-		? 'background: rgba(11, 15, 26, 0.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06);'
-		: 'background: transparent;'}
+	class="fixed inset-x-0 top-0 z-50"
+	style="background: transparent;"
 >
 	<div class="mx-auto flex h-17 max-w-300 items-center justify-between px-6">
 		<!-- ── Logo ─────────────────────────────────────── -->

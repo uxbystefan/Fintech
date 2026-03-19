@@ -23,7 +23,8 @@ body {
 	font-family: 'Space Grotesk', system-ui, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	overflow-x: hidden;
+	overflow: hidden;
+	height: 100%;
 }
 
 /* ── Keyframes ────────────────────────────────────────── */
